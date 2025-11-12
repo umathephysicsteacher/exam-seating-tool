@@ -215,7 +215,7 @@ def assign_seats_and_generate(files, school, exam, seed, bundle_size, preprint_r
     teacher_load=defaultdict(lambda:{'rooms':[],'students':0,'class10':'No'})
     for r in invig_rows:
         name = r['invigilator_name'] or "UNASSIGNED"; teacher_load[name]['rooms'].append(r['room']); teacher_load[name]['students']+=r['num_students']
-        if r['has_class10']=="Yes': teacher_load[name]['class10']="Yes"
+        if r['has_class10'] == "Yes": teacher_load[name]['class10'] = "Yes"
     trows=[] 
     for name,info in teacher_load.items(): trows.append({'invigilator_name':name,'rooms':",".join(info['rooms']),'total_students':info['students'],'class10_present':info['class10']})
     outputs[f"{prefix}_teacher_load_report.csv"] = pd.DataFrame(trows).to_csv(index=False).encode('utf-8')
@@ -347,3 +347,4 @@ if st.session_state.get('outputs') and st.session_state.get('pdfs'):
 
 st.markdown("---")
 st.caption("One-click saving writes separate CSV & PDF files to Downloads (no zip).")
+
